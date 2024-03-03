@@ -107,6 +107,7 @@ class GYAZ_Export_Preferences (AddonPreferences):
         description='Mesh smoothing data')
         
     allow_quads: BoolProperty (name='Allow Quads', default=False, description='Allow quads. Ngons are never allowed')
+    allow_no_mats: BoolProperty (name='Allow No Materials', default=False, description='Allow no materials.')
     
     skeletal_mesh_limit_bone_influences: EnumProperty (name='Max Bone Inflences', description="Limit bone influences by vertex",
         items=(
@@ -177,6 +178,7 @@ class GYAZ_Export_Preferences (AddonPreferences):
         lay.prop (self, "check_for_second_uv_map")
         lay.prop (self, "detect_mirrored_uvs")
         lay.prop (self, "allow_quads")
+        lay.prop (self, "allow_no_mats")
         lay.label (text='')
         lay.prop (self, "add_end_bones")
         lay.prop (self, "skeletal_mesh_limit_bone_influences")

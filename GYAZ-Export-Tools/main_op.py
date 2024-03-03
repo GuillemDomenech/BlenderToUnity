@@ -447,7 +447,7 @@ class Op_GYAZ_Export_Export (bpy.types.Operator):
             poly_warning = 'Quads/ngons found: '
         
         def is_everything_fine():
-            return len(no_material_objects)==0 and len(no_uv_map_objects)==0 and len(no_second_uv_map_objects)==0 and \
+            return (scene_gyaz_export.allow_no_mats or len(no_material_objects)==0) and len(no_uv_map_objects)==0 and len(no_second_uv_map_objects)==0 and \
                 len(bad_poly_objects)==0 and len(ungrouped_vert_objects)==0 and len(mirrored_uv_objects)==0 and \
                 len(missing_textures)==0 and len(missing_bones)==0 and len(cant_create_extra_bones)==0 and \
                 len(multiple_or_no_armature_mods)==0 and len(shapes_and_mods)==0
@@ -1469,7 +1469,7 @@ class Op_GYAZ_Export_Export (bpy.types.Operator):
                         bake_anim_step=fbx_settings.bake_anim_step, 
                         bake_anim_simplify_factor=fbx_settings.bake_anim_simplify_factor 
                     )               
-                    report (self, 'Export has been successful.', 'INFO')
+                    report (self, 'Export has been successful, yayyyy 2', 'INFO')
         
         ###########################################################
         # EXPORT BY ASSET TYPE

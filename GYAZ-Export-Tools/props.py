@@ -236,6 +236,7 @@ class PG_GYAZ_ExportProps (PropertyGroup):
         description='Mesh smoothing data')
         
     allow_quads: BoolProperty (name='Allow Quads', default=prefs.allow_quads, description='Allow quads. Ngons are never allowed')
+    allow_no_mats: BoolProperty (name='Allow No Materials', default=prefs.allow_no_mats, description='Allow no mats.')
 
     filter_string: StringProperty (default='')
     

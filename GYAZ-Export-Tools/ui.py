@@ -227,6 +227,7 @@ class SCENE_PT_GYAZ_Export (Panel):
             col.prop (owner, "check_for_second_uv_map")
             col.prop (owner, "detect_mirrored_uvs")
             col.prop (owner, "allow_quads")
+            col.prop (owner, "allow_no_mats")
             col.prop (owner, "add_end_bones")
             col.label (text="Smoothing:")
             col.prop (owner, "mesh_smoothing", text="")
