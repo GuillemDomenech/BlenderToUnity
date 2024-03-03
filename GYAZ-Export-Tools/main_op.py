@@ -1482,6 +1482,9 @@ class Op_GYAZ_Export_Export (bpy.types.Operator):
         if asset_type == 'STATIC_MESHES':
             
             self.rename_materials(meshes_to_export, material_prefix, material_suffix)
+        
+            if target_y_up_z_forward:
+                self.rotate_mesh(meshes_to_export)
     
             if pack_objects:
                 
@@ -1958,6 +1961,26 @@ class Op_GYAZ_Export_Export (bpy.types.Operator):
         for mesh in meshes:
             mesh.select_set(True)
         bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+
+    def rotate_mesh(self, meshes):
+        bpy.ops.object.mode_set(mode='OBJECT')
+        
+        rot_mat = Matrix.Rotation(radians(-90.0), 4, "X")
+        
+        report (self, 'rotated mesh.' , 'INFO')
+        
+        for i in range(len(meshes)):
+            report (self, 'mesh.' , 'INFO')
+            bpy.ops.object.mode_set(mode='OBJECT')
+            meshes[i].matrix_world = rot_mat @ meshes[i].matrix_world
+            make_active_only(meshes[i])
+            bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+            bpy.ops.object.select_all(action='DESELECT')
+        
+        for mesh in meshes:
+            mesh.select_set(True)
+        bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)        
+
 
     def move_root_motion_from_bone_to_object(self, rig, root_bone_name, actions):
         
